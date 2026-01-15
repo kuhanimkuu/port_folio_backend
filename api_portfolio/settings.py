@@ -63,6 +63,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:5173",
     "http://localhost:5174",  # Vite alternate port
     "http://127.0.0.1:5174",
+    "https://port-folio-ten-blue.vercel.app",
 ]
 ROOT_URLCONF = 'api_portfolio.urls'
 
