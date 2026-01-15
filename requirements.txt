@@ -16,3 +16,4 @@ sqlparse==0.5.5
 tkinterdnd2==0.4.3
 tzdata==2025.3
 webencodings==0.5.1
+whitenoise==6.5.0 
