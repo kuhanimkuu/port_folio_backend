@@ -3,14 +3,33 @@ from .models import Project, Blog
 import bleach
 
 class ProjectSerializer(serializers.ModelSerializer):
+    tech = serializers.SerializerMethodField()
+    highlights = serializers.SerializerMethodField()
+    github = serializers.URLField(source='github_url', read_only=True)
+    github_backend = serializers.URLField(source='github_backend_url', read_only=True)
+    live = serializers.URLField(source='live_url', read_only=True)
+    image = serializers.URLField(source='thumbnail_url', read_only=True)
+
     class Meta:
         model = Project
         fields = [
-            'id', 'title', 'slug', 'description', 'tech_stack',
-            'github_url', 'live_url', 'thumbnail_url',
+            'id', 'title', 'slug', 'description', 'tech', 'highlights',
+            'github', 'github_backend', 'live', 'image',
             'featured', 'order', 'status',
             'created_at', 'updated_at'
         ]
+
+    def get_tech(self, obj):
+        """Convert comma-separated tech_stack to array"""
+        if obj.tech_stack:
+            return [t.strip() for t in obj.tech_stack.split(',') if t.strip()]
+        return []
+
+    def get_highlights(self, obj):
+        """Convert comma-separated highlights to array"""
+        if obj.highlights:
+            return [h.strip() for h in obj.highlights.split(',') if h.strip()]
+        return []
 
 
 class BlogSerializer(serializers.ModelSerializer):

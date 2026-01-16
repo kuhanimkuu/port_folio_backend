@@ -12,7 +12,9 @@ class Project(models.Model):
     slug = models.SlugField(max_length=140, unique=True, blank=True)
     description = models.TextField()
     tech_stack = models.CharField(max_length=200, help_text="Comma-separated e.g. React, Tailwind, Django")
+    highlights = models.TextField(blank=True, help_text="Comma-separated highlights e.g. Feature 1, Feature 2")
     github_url = models.URLField(blank=True)
+    github_backend_url = models.URLField(blank=True, help_text="Backend repo URL if separate")
     live_url = models.URLField(blank=True)
     thumbnail_url = models.URLField(blank=True)
 
